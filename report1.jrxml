@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="226" pageHeight="566" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5a38a9b8-3af0-4ec3-b85f-f6203e4806b1">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="invo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     carproducts.`id` AS carproducts_id,
+     carproducts.`CleanId` AS carproducts_CleanId,
+     carproducts.`CleanType` AS carproducts_CleanType,
+     carproducts.`Price` AS carproducts_Price,
+     carclean.`id` AS carclean_id,
+     carclean.`CarNo` AS carclean_CarNo,
+     carclean.`Total` AS carclean_Total,
+     carclean.`Pay` AS carclean_Pay,
+     carclean.`Balance` AS carclean_Balance
+FROM
+     `carproducts` carproducts INNER JOIN `carclean` carclean ON carproducts.`CleanId` = carclean.`id` WHERE carclean.`id` = $P{invo}]]>
+	</queryString>
+	<field name="carproducts_id" class="java.lang.Integer"/>
+	<field name="carproducts_CleanId" class="java.lang.Integer"/>
+	<field name="carproducts_CleanType" class="java.lang.String"/>
+	<field name="carproducts_Price" class="java.lang.Integer"/>
+	<field name="carclean_id" class="java.lang.Integer"/>
+	<field name="carclean_CarNo" class="java.lang.String"/>
+	<field name="carclean_Total" class="java.lang.Integer"/>
+	<field name="carclean_Pay" class="java.lang.Integer"/>
+	<field name="carclean_Balance" class="java.lang.Integer"/>
+	<group name="sales">
+		<groupFooter>
+			<band height="75">
+				<textField>
+					<reportElement x="155" y="0" width="31" height="20" uuid="5b6792a8-b561-4e81-a368-24b61eda4cc3"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carclean_Total}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="22" width="31" height="20" uuid="4d5e0ef8-d302-40d7-b74a-f7652a957e91"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carclean_Pay}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="54" width="31" height="20" uuid="c5179061-1d4e-44f2-8731-e8b7ba6427e8"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carclean_Balance}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="97" y="2" width="28" height="20" forecolor="#990000" uuid="12412efa-231e-47b8-9e29-2856fddcf258"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="97" y="24" width="28" height="20" forecolor="#990033" uuid="337c0d9a-accc-4240-9d3e-2f0a268a463f"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pay]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="97" y="54" width="44" height="20" forecolor="#990033" uuid="37d3b7b9-8dcd-4f39-ac21-e87f4af83641"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Balance]]></text>
+				</staticText>
+				<line>
+					<reportElement x="97" y="48" width="89" height="1" uuid="bd101451-c3ab-4c45-81e6-56bc76d248ce"/>
+					<graphicElement>
+						<pen lineStyle="Double" lineColor="#009999"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="7" y="37" width="176" height="20" uuid="8239b008-e1d6-4ee8-9228-4ef2eda61fc1"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Cooper Black" size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA["Auto" Car Cleaning Service]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="74" width="27" height="20" forecolor="#3333FF" uuid="ca80ef00-59aa-489c-b898-2211f5409d87"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carproducts_CleanId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="74" width="52" height="20" forecolor="#3333FF" uuid="47d3e950-e320-4533-a81d-7f7918759589"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice No  :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="21" width="60" height="20" uuid="5f30a69d-9273-43f0-9fd3-e73e9ff24dff"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clean Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="21" width="60" height="20" uuid="f4ea2995-7a54-4d81-a3c6-791352d28798"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Price]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="26" height="12" uuid="8cf7a40c-9426-4ac5-a838-820c9894fa16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carproducts_CleanType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="1" width="27" height="12" uuid="a8271368-2673-43e7-8add-79d00c56a7a6"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carproducts_Price}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="13" width="186" height="1" forecolor="#009999" uuid="65f021d6-f795-4e3a-8dcf-bcc2a5a213b7"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
